@@ -1,0 +1,15 @@
+name: effectful_utils
+description: Dart utility extensions for strings, collections, numbers, and time.
+version: 0.0.1
+repository: https://github.com/editorstack/effectful
+
+environment:
+  sdk: ">=3.3.0 <4.0.0"
+
+dependencies:
+  characters: ^1.1.0
+  collection: ^1.15.0
+
+dev_dependencies:
+  test: ^1.25.6
+  very_good_analysis: ^10.0.0

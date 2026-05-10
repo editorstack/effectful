@@ -1,0 +1,61 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  ci:
+    name: ${{ matrix.package.name }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        package:
+          - name: effectful_utils
+            type: dart
+          - name: effectful_ui
+            type: flutter
+          - name: effectful_updater
+            type: flutter
+    defaults:
+      run:
+        working-directory: ${{ matrix.package.name }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Dart
+        if: matrix.package.type == 'dart'
+        uses: dart-lang/setup-dart@v1
+        with:
+          sdk: stable
+
+      - name: Set up Flutter
+        if: matrix.package.type == 'flutter'
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+
+      - name: Install dependencies
+        run: |
+          if [ "${{ matrix.package.type }}" = "flutter" ]; then
+            flutter pub get
+          else
+            dart pub get
+          fi
+
+      - name: Format
+        run: dart format --set-exit-if-changed .
+
+      - name: Analyze
+        run: dart analyze --fatal-infos
+
+      - name: Test
+        run: |
+          if [ "${{ matrix.package.type }}" = "flutter" ]; then
+            flutter test
+          else
+            dart test
+          fi

@@ -1,0 +1,27 @@
+name: effectful_ui
+description: "shadcn-inspired Flutter widget library with direct style provisioning."
+version: 0.0.2
+repository: https://github.com/editorstack/effectful
+
+environment:
+  sdk: ">=3.3.0 <4.0.0"
+  flutter: ">=3.32.3"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_hooks: ^0.21.3+1
+  intl: ^0.20.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+# For information on the generic Dart part of this file, see the
+# following page: https://dart.dev/tools/pub/pubspec
+
+# The following section is specific to Flutter packages.
+flutter:
+  generate: true
+  uses-material-design: true
