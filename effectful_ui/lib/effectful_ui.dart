@@ -1,3 +1,4 @@
+/// Public widget surface for the effectful_ui package.
 library;
 
 export 'src/components/control/button.dart';
